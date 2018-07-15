@@ -150,15 +150,41 @@ gulp.src('xxxxx.jade')
 用法
 
 ```js 
-  gulp.watch()
+  gulp.watch(glob [, opts], tasks)
+  gulp.watch(glob [, opts, cb])
 
 ```
 
+用法一
+> 监听（单个或多个）文件的变动，一旦有变，就执行规定的task，这些task是通过gulp.task注册的。
 
+```js
+  gulp.watch(glob [, opts], tasks);
+```
 
+opts (基本不会用到)
 
+tasks: 要执行的任务列表 Array
 
+```js
 
+gulp.watch('js/**/*.js', ['uglify','reload']);
+```
+
+用法二：
+>监听（单个或多个）文件的变动，一旦有变，就执行callback这个回调函数。
+
+```js
+gulp.watch(glob[, opts, callback])
+```
+
+```js
+
+gulp.watch('js/**/*.js', function(event) {
+  console.log('File ' + event.path + ' was ' + event.type + ', running tasks...');
+});
+
+```
 
 
 
